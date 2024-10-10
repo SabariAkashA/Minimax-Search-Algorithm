@@ -152,6 +152,18 @@ Returning the Best Move (return (maxv, px, py)):
 
 After evaluating all possible moves, the function returns the best possible outcome (maxv) and the coordinates (px, py) of the best move for player 'O'.
         '''
+        for i in range(3):
+            for j in range(3):
+                if self.current_state[i][j] == '.':
+                    self.current_state[i][j] = 'X'  
+                    (m, max_i, max_j) = self.max()  
+                    if m < minv:
+                        minv = m
+                        qx = i
+                        qy = j
+                    self.current_state[i][j] = '.'  
+        return (minv, qx, qy)
+
     def play(self):
         while True:
             self.draw_board()
